@@ -1,6 +1,6 @@
 {
   "name": "calculator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Put your description here.",
   "main": "app.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "babel-preset-env": "^1.6.0",
     "bluebird": "~2.9.24",
     "browser-sync": "^2.12.10",
-    "composi": "^1.0.4",
+    "composi": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-better-rollup": "^1.1.1",
     "gulp-gzip": "^1.4.0",

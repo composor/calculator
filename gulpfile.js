@@ -28,7 +28,7 @@ gulp.task('watch', function() {
 
 gulp.task('build', function () {
   return rollup.rollup({
-    entry: './dev/app.js',
+    input: './dev/app.js',
     plugins: [
       babel(),
       resolve({

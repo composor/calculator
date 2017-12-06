@@ -14,36 +14,49 @@ function Button(props) {
   )
 }
 
+const buttonData = [
+  {text: "7", class: "7"},
+  {text: "8", class: "8"},
+  {text: "9", class: "9"},
+  {text: "4", class: "4"},
+  {text: "5", class: "5"},
+  {text: "6", class: "6"},
+  {text: "1", class: "1"},
+  {text: "2", class: "2"},
+  {text: "3", class: "3"},
+  {text: ".", class: "decimal"},
+  {text: "0", class: "0"},
+  {text: "=", class: "equals"}
+]
+
 function MainPanel() {
   return (
     <div class='button-set--numbers'>
-      <Button text="7" class="7" />
-      <Button text="8" class="8" />
-      <Button text="9" class="9" />
-      <Button text="4" class="4" />
-      <Button text="5" class="5" />
-      <Button text="6" class="6" />
-      <Button text="1" class="1" />
-      <Button text="2" class="2" />
-      <Button text="3" class="3" />
-      <Button text="." class="decimal" />
-      <Button text="0" class="0" />
-      <Button text="=" class="equals" />
+      {
+        buttonData.map(button => <Button text={button.text} class={button.class} />)
+      }
     </div>
   )
 }
 
+const buttonEquations = [
+  {text: 'DEL', class: 'delete'},
+  {text: '÷', class: 'divide'},
+  {text: '×', class: 'multiply'},
+  {text: '-', class: 'subtract'},
+  {text: '+', class: 'add'}
+]
+
 function ButtonSetEquations() {
-  return (
+    return (
     <section class="button-set--equations">
-      <Button text="DEL" class='delete' />
-      <Button text="÷" class='divide' />
-      <Button text="×" class='multiply'/>
-      <Button text="-" class='subtract'/>
-      <Button text="+" class='add'/>
+      {
+        buttonEquations.map(button => <Button text={button.text} class={button.class} />)
+      }
     </section>
   )
 }
+
 export class Calculator extends Component {
   constructor(props) {
     super(props)
@@ -54,6 +67,7 @@ export class Calculator extends Component {
     }
     this.operation = ''
   }
+  
   delete() {
     this.setState({
       currNum: '',
@@ -61,26 +75,31 @@ export class Calculator extends Component {
       memory: ''
     })
   }
+
   add(amount) {
     let state = this.state
     state += amount
     this.setState(state)
   }
+
   subtract(amount) {
     let state = this.state
     state -= amount
     this.setState(state)
   }
+
   multiply(amount) {
     let state = this.state
     state *= amount
     this.setState(state)
   }
+
   divide(amount) {
     let state = this.state
     state /= amount
     this.setState(state)
   }
+
   useNumber(e) {
     let name = e.target.className;
     if (name === 'decimal') name = '.'
@@ -92,6 +111,7 @@ export class Calculator extends Component {
       this.setState({total: this.state.currNum})
     }
   }
+
   render() {
     return (
       <main class="composi-calculator">
@@ -103,6 +123,7 @@ export class Calculator extends Component {
       </main>
     )
   }
+
   handleEvent(e) {
     if (e.target.nodeName === 'BUTTON') {
       const name = e.target.className
@@ -167,6 +188,7 @@ export class Calculator extends Component {
       }
     }
   }
+
   componentWasCreated() {
     this.element.addEventListener('click', this)
   }
