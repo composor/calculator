@@ -48,7 +48,7 @@ const buttonEquations = [
 ]
 
 function ButtonSetEquations() {
-    return (
+  return (
     <section class="button-set--equations">
       {
         buttonEquations.map(button => <Button text={button.text} class={button.class} />)
