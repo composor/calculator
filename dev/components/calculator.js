@@ -165,26 +165,15 @@ export class Calculator extends Component {
 
       // Get total from math operation:s
       if (name === 'equals') {
+        
         const operation = this.operation
-        let total;
-        switch (operation) {
-          case "+":
-            total = parseFloat(this.state.memory) + parseFloat(this.state.total)
-            this.setState({total: total})
-            break
-          case "*":
-            total = parseFloat(this.state.memory) * parseFloat(this.state.total)
-            this.setState({total: total})
-            break
-          case "/":
-            total = parseFloat(this.state.memory) / parseFloat(this.state.total)
-            this.setState({total: total})
-            break
-          case "-":
-            total = parseFloat(this.state.memory) - parseFloat(this.state.total)
-            this.setState({total: total})
-            break
-        }
+        const memory = parseFloat(this.state.memory)
+        const total = parseFloat(this.state.total)
+
+        if (operation === '+') this.setState({total: memory + total})
+        if (operation === '*') this.setState({total: memory * total})
+        if (operation === '/') this.setState({total: memory / total})
+        if (operation === '-') this.setState({total: memory - total})
       }
     }
   }
