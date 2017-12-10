@@ -67,6 +67,18 @@ export class Calculator extends Component {
     }
     this.operation = ''
   }
+
+  useNumber(e) {
+    let name = e.target.className;
+    if (name === 'decimal') name = '.'
+    if (this.state.total === '0') this.state.total = ''
+    this.setState({currNum: name})
+    if (this.state.total != 0) {
+      this.setState({total: this.state.total  + this.state.currNum})
+    } else {
+      this.setState({total: this.state.currNum})
+    }
+  }
   
   delete() {
     this.setState({
@@ -98,18 +110,6 @@ export class Calculator extends Component {
     let state = this.state
     state /= amount
     this.setState(state)
-  }
-
-  useNumber(e) {
-    let name = e.target.className;
-    if (name === 'decimal') name = '.'
-    if (this.state.total === '0') this.state.total = ''
-    this.setState({currNum: name})
-    if (this.state.total != 0) {
-      this.setState({total: this.state.total  + this.state.currNum})
-    } else {
-      this.setState({total: this.state.currNum})
-    }
   }
 
   render() {
@@ -167,8 +167,13 @@ export class Calculator extends Component {
       if (name === 'equals') {
         
         const operation = this.operation
-        const memory = parseFloat(this.state.memory)
-        const total = parseFloat(this.state.total)
+        let memory = parseFloat(this.state.memory)
+        let total = parseFloat(this.state.total)
+
+        // In case of some weird combination of key presses:
+        if (!operation) this.delete()
+        if (isNaN(memory)) memory = 0
+        if (isNaN(total)) total = 0
 
         if (operation === '+') this.setState({total: memory + total})
         if (operation === '*') this.setState({total: memory * total})
