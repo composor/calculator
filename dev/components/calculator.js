@@ -183,7 +183,7 @@ export class Calculator extends Component {
     }
   }
 
-  componentWasCreated() {
+  componentDidMount() {
     this.element.addEventListener('click', this)
   }
 }
